@@ -13,9 +13,12 @@ require
  * A  function that an Express server runs between
  * receiving a request and responding to that request.
  */
-const sayHello = (req, res, next) => {
-    res.send("Hello");
-}
+ const sayHello = (req, res) => {
+    console.log(req.query);
+    const name = req.query.name;
+    const content = name ? `Hello, ${name}!` : "Hello!";
+    res.send(content);
+  };
 
 app.use(morgan("dev"));
 app.get("/hello", sayHello);
