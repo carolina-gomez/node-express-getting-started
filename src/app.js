@@ -3,6 +3,7 @@
  * Express application
  */
 
+const morgan = require("morgan");
 const express = require("express");
 const app = express();
 require
@@ -16,12 +17,7 @@ const sayHello = (req, res, next) => {
     res.send("Hello");
 }
 
-const logging = (req,res,next) => {
-    console.log("A request is being made!");
-    next();
-}
-
-app.use(logging);
+app.use(morgan("dev"));
 app.use(sayHello);
 
 module.exports = app;
